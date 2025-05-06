@@ -32,9 +32,12 @@ export function Post({author, publishedAt, content}) {
     function handleNewCommentInvalid(e) {
         e.target.setCustomValidity("Esse campo é obrigatório!")
     }
-    function deleteComment(comment){
-        console.log(`deletando ${comment}`);
-        
+    function deleteComment(commentToDelete){
+        const commentsWithoutDeleteOne = comments.filter(comment => {
+            return comment !== commentToDelete;
+        })
+
+        setComments(commentsWithoutDeleteOne);
     }
 
     const isNewCommentEmpty = newCommentText.length === 0;
